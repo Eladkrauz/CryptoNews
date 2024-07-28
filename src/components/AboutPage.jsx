@@ -9,11 +9,11 @@ import { DarkLightModeContext } from '../contexts/DarkLightModeContext';
 
 // Array containing team member information including name, image, and description
 const teamMembers = [
-    { name: 'Elad Krauz', image: '../src/assets/EladKrauz.JPEG', description: 'Frontend Developer' },
-    { name: 'Lee Potashnik', image: '../src/assets/LeePotashnik.jpg', description: 'Project Manager' },
-    { name: 'Uri Ziv', image: '../src/assets/UriZiv.jpg', description: 'Backend Developer' },
-    { name: 'Tal Turgeman', image: '../src/assets/TalTurgeman.jpg', description: 'UI and Tailwind Developer' },
-    { name: 'Ofir Berkovitch', image: '../src/assets/OfirBerkovitch.jpg', description: 'Content Manager' }
+    { name: 'Elad Krauz', image: '../public/assets/EladKrauz.JPEG', description: 'Frontend Developer' },
+    { name: 'Lee Potashnik', image: '../public/assets/LeePotashnik.jpg', description: 'Project Manager' },
+    { name: 'Uri Ziv', image: '../public/assets/UriZiv.jpg', description: 'Backend Developer' },
+    { name: 'Tal Turgeman', image: '../public/assets/TalTurgeman.jpg', description: 'UI and Tailwind Developer' },
+    { name: 'Ofir Berkovitch', image: '../public/assets/OfirBerkovitch.jpg', description: 'Content Manager' }
 ];
 
 // Text content for various sections of the About page
