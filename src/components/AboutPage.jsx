@@ -1,5 +1,5 @@
 /**
- * This file defines the AboutPage component for the Crypto News application.
+  * This file defines the AboutPage component for the Crypto News application.
  * The AboutPage component provides information about the platform, the team, vision, core values, and future development plans.
  * It utilizes the dark/light mode context to style the page accordingly.
  */
@@ -37,78 +37,75 @@ const AboutPage = () => {
     const { darkLightMode } = useContext(DarkLightModeContext); // Access the dark/light mode context
 
     return (
-        <div className="flex flex-col items-center p-8">
+        <div className="flex flex-col items-center p-4 sm:p-8">
             <div className="w-full max-w-5xl">
                 {/* Section: About Crypto News */}
-                <div className={`rounded-lg shadow-lg p-6 mb-8 ${darkLightMode === 'light'
+                <div className={`rounded-lg shadow-lg p-4 sm:p-6 mb-8 ${darkLightMode === 'light'
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>
-                    <h2 className="text-3xl font-bold mb-4 text-center">ABOUT CRYPTO NEWS</h2>
-                    <p className="text-lg text-justify">
+                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center">ABOUT CRYPTO NEWS</h2>
+                    <p className="text-base sm:text-lg text-justify">
                         {aboutCryptoNews}
                     </p>
                 </div>
 
                 {/* Section: About the Team */}
-                <div className={`rounded-lg shadow-lg p-6 mb-8 ${darkLightMode === 'light'
+                <div className={`rounded-lg shadow-lg p-4 sm:p-6 mb-8 ${darkLightMode === 'light'
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>
-                    <h2 className="text-3xl font-bold mb-4 text-center">ABOUT THE TEAM</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center">ABOUT THE TEAM</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                         {teamMembers.map((member, index) => (
                             <div key={index} className="flex flex-col items-center">
-                                <img src={member.image} alt={member.name} className="rounded-full w-32 h-32 mb-4 border-gray-700 border-2 shadow-xl shadow-gray-700" />
-                                <p className="text-lg font-bold">{member.name}</p>
-                                <p className="text-lg">{member.description}</p>
+                                <img src={member.image} alt={member.name} className="rounded-full w-24 h-24 sm:w-32 sm:h-32 mb-4 border-gray-700 border-2 shadow-xl shadow-gray-700" />
+                                <p className="text-base sm:text-lg font-bold">{member.name}</p>
+                                <p className="text-base sm:text-lg">{member.description}</p>
                             </div>
                         ))}
                     </div>
                 </div>
 
                 {/* Section: Our Vision */}
-                <div className={`rounded-lg shadow-lg p-6 mb-8 ${darkLightMode === 'light'
+                <div className={`rounded-lg shadow-lg p-4 sm:p-6 mb-8 ${darkLightMode === 'light'
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>
-                    <h2 className="text-3xl font-bold mb-4 text-center">OUR VISION</h2>
-                    <p className="text-lg text-justify">
+                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center">OUR VISION</h2>
+                    <p className="text-base sm:text-lg text-justify">
                         {ourVision}
                     </p>
                 </div>
 
                 {/* Section: Core Values */}
-                <div className={`rounded-lg shadow-lg p-6 mb-8 ${darkLightMode === 'light'
+                <div className={`rounded-lg shadow-lg p-4 sm:p-6 mb-8 ${darkLightMode === 'light'
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>
-                    <h2 className="text-3xl font-bold mb-4 text-center">OUR VALUES</h2>
-                    <div className="grid grid-cols-7">
-                        <div className="col-span-1">
-                            <h2 className="text-xl font-bold mb-2 text-center">Integrity</h2>
-                            <p className="text-lg text-center">
+                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center">OUR VALUES</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div className="flex flex-col items-center">
+                            <h2 className="text-lg sm:text-xl font-bold mb-2 text-center">Integrity</h2>
+                            <p className="text-base sm:text-lg text-center">
                                 {coreValues.integrity}
                             </p>
                         </div>
-                        <div className="col-span-1"></div>
-                        <div className="col-span-1">
-                            <h2 className="text-xl font-bold mb-2 text-center">Innovation</h2>
-                            <p className="text-lg text-center">
+                        <div className="flex flex-col items-center">
+                            <h2 className="text-lg sm:text-xl font-bold mb-2 text-center">Innovation</h2>
+                            <p className="text-base sm:text-lg text-center">
                                 {coreValues.innovation}
                             </p>
                         </div>
-                        <div className="col-span-1"></div>
-                        <div className="col-span-1">
-                            <h2 className="text-xl font-bold mb-2 text-center">Excellence</h2>
-                            <p className="text-lg text-center">
+                        <div className="flex flex-col items-center">
+                            <h2 className="text-lg sm:text-xl font-bold mb-2 text-center">Excellence</h2>
+                            <p className="text-base sm:text-lg text-center">
                                 {coreValues.excellence}
                             </p>
                         </div>
-                        <div className="col-span-1"></div>
-                        <div className="col-span-1">
-                            <h2 className="text-xl font-bold mb-2 text-center">Community</h2>
-                            <p className="text-lg text-center">
+                        <div className="flex flex-col items-center">
+                            <h2 className="text-lg sm:text-xl font-bold mb-2 text-center">Community</h2>
+                            <p className="text-base sm:text-lg text-center">
                                 {coreValues.community}
                             </p>
                         </div>
@@ -116,12 +113,12 @@ const AboutPage = () => {
                 </div>
 
                 {/* Section: Future Development */}
-                <div className={`rounded-lg shadow-lg p-6 ${darkLightMode === 'light'
+                <div className={`rounded-lg shadow-lg p-4 sm:p-6 ${darkLightMode === 'light'
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>
-                    <h2 className="text-3xl font-bold mb-4 text-center">FUTURE DEVELOPMENT</h2>
-                    <p className="text-lg text-justify">
+                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center">FUTURE DEVELOPMENT</h2>
+                    <p className="text-base sm:text-lg text-justify">
                         {futureDevelopment}
                     </p>
                 </div>

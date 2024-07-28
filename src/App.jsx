@@ -62,21 +62,21 @@ function App() {
         navigate("/article", { state: { article } });
     };
 
-    return (
-        <div className={`app min-h-screen m-0 ${darkLightMode === 'light'
-            ? 'bg-gradient-to-b from-gray-400 via-white to-gray-400'
-            : 'bg-gradient-to-b from-gray-700 via-black to-gray-700'
-            }`}>
-            <MenuBar onPageClick={{ showHomePage, showAboutPage, showContactPage }} title={title} />
-            <FilterBar onCurrencyClick={(currency) => navigate("/", { state: { currency } })} />
-            <Routes>
-                <Route path="/" element={<ArticleContainer onArticleClick={showFullArticle} currenciesToShow={location.state?.currency || allCurrencies} />} />
-                <Route path="/article" element={<ArticleFull article={location.state?.article} onClose={showHomePage} />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/contact" element={<ContactForm />} />
-            </Routes>
-        </div>
-    );
+return (
+    <div className={`app min-h-screen m-0 w-full overflow-auto ${darkLightMode === 'light'
+        ? 'bg-gradient-to-b from-gray-400 via-white to-gray-400'
+        : 'bg-gradient-to-b from-gray-700 via-black to-gray-700'
+        }`}>
+        <MenuBar onPageClick={{ showHomePage, showAboutPage, showContactPage }} title={title} />
+        <FilterBar onCurrencyClick={(currency) => navigate("/", { state: { currency } })} />
+        <Routes>
+            <Route path="/" element={<ArticleContainer onArticleClick={showFullArticle} currenciesToShow={location.state?.currency || allCurrencies} />} />
+            <Route path="/article" element={<ArticleFull article={location.state?.article} onClose={showHomePage} />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactForm />} />
+        </Routes>
+    </div>
+);
 }
 
 export default App;

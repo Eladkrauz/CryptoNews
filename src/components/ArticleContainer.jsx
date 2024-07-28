@@ -1,9 +1,3 @@
-/**
- * This file defines the ArticleContainer component for the Crypto News application.
- * The ArticleContainer component displays a carousel of article summaries and handles automatic sliding of articles.
- * It uses the dark/light mode context to style the component accordingly and fetches articles based on selected currencies.
- */
-
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import ArticleSummary from './ArticleSummary';
 import '../styles/ArticleContainer.css';
@@ -28,11 +22,11 @@ function ArticleContainer({ onArticleClick, currenciesToShow }) {
         const getArticles = async () => {
             if (currenciesToShow && currenciesToShow.length > 0) {
                 console.log(currenciesToShow);
-                const articlesData = await fetchArticlesByCurrencies(currenciesToShow);
-                setArticles(articlesData);
+                // const articlesData = await fetchArticlesByCurrencies(currenciesToShow);
+                // setArticles(articlesData);
 
                 // Using fake articles for testing purposes
-                // setArticles(fakeArticles);
+                setArticles(fakeArticles);
             }
         };
 
@@ -89,7 +83,7 @@ function ArticleContainer({ onArticleClick, currenciesToShow }) {
 
     return (
         <div
-            className="article-container m-10 p-4"
+            className="article-container m-4 p-4 overflow-hidden"
             onMouseEnter={stopAutoSlide} // Stop sliding on mouse enter
             onMouseLeave={startAutoSlide} // Resume sliding on mouse leave
         >
@@ -101,11 +95,11 @@ function ArticleContainer({ onArticleClick, currenciesToShow }) {
                     </span>
                 </button>
                 <div
-                    className={`article-summary-container flex justify-center items-center`}
+                    className="article-summary-container flex justify-center items-center w-full overflow-hidden"
                 >
-                    <div className="article-summary-wrapper mb-4" style={{ transform: `translateX(-${currentArticleIndex * 100}%)` }}>
+                    <div className="article-summary-wrapper flex mb-4" style={{ transform: `translateX(-${currentArticleIndex * 100}%)` }}>
                         {articles.map((article, index) => (
-                            <div key={index} className="article-summary-item">
+                            <div key={index} className="article-summary-item flex justify-center items-center w-full">
                                 <ArticleSummary article={article} handleArticleClick={handleSummaryClick} />
                             </div>
                         ))}
