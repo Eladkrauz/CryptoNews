@@ -1,0 +1,23 @@
+/* ArticleContainer.css */
+.article-summary-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.article-summary-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+.article-summary-item {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.article-summary {
+    text-align: center;
+}

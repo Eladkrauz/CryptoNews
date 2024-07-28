@@ -1,0 +1,77 @@
+.button-img-right-arrow {
+    background: url('./src/assets/right-arrow.png') no-repeat center;
+    background-size: contain;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+.button-img-right-arrow-dark-mode {
+    background: url('./src/assets/right-arrow-darkmode.png') no-repeat center;
+    background-size: contain;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+.button-img-right-arrow:hover, .button-img-right-arrow-dark-mode:hover {
+    background: url('./src/assets/right-arrow-hover.png') no-repeat center;
+    background-size: contain;
+}
+
+.button-img-left-arrow {
+    background: url('./src/assets/left-arrow.png') no-repeat center;
+    background-size: contain;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+.button-img-left-arrow-dark-mode {
+    background: url('./src/assets/left-arrow-darkmode.png') no-repeat center;
+    background-size: contain;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+.button-img-left-arrow:hover, .button-img-left-arrow-dark-mode:hover {
+    background: url('./src/assets/left-arrow-hover.png') no-repeat center;
+    background-size: contain;
+}
+
+.button-img-dark-mode {
+    background: url('./src/assets/dark-mode.png') no-repeat center;
+    background-size: contain;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+}
+
+.button-img-dark-mode:hover {
+    background: url('./src/assets/dark-mode-hover.png') no-repeat center;
+    background-size: contain;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+}
+
+.button-img-light-mode {
+    background: url('./src/assets/light-mode.png') no-repeat center;
+    background-size: contain;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+}
+
+.button-img-light-mode:hover {
+    background: url('./src/assets/light-mode-hover.png') no-repeat center;
+    background-size: contain;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+}
+
+.clickable {
+    cursor: pointer;
+}
