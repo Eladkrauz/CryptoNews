@@ -25,7 +25,7 @@ function MenuBar({ onPageClick, title }) {
             }`}
         >
             <div className="flex items-center">
-                <img src="/assets/crypto-news-logo.png" alt="Website Logo" className="clickable h-20 w-20 mr-2" onClick={showHomePage} />
+                <img src="../assets/crypto-news-logo.png" alt="Website Logo" className="clickable h-20 w-20 mr-2" onClick={showHomePage} />
                 <span
                     className={`text-2xl font-bold font-serif ${darkLightMode === 'light' ? 'text-black' : 'text-white'}`}>{title}
                 </span>
