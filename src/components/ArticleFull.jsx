@@ -47,7 +47,7 @@ function ArticleFull({ article, onClose, cameFrom }) {
                             className="flex justify-center bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black shadow-gray-800 hover:shadow-black shadow-lg font-bold p-4 rounded mt-4 hover:from-yellow-500 hover:via-yellow-600 hover:to-yellow-500"
                             onClick={onClose}
                         >
-                            <img src="./src/assets/left-arrow.png" className="mr-1 h-6 w-6" />
+                            <img src="/assets/left-arrow.png" className="mr-1 h-6 w-6" />
                             Back to All Articles
                         </button>
                         <button
@@ -55,7 +55,7 @@ function ArticleFull({ article, onClose, cameFrom }) {
                             onClick={handleClick}
                         >
                             Go To The Original Article
-                            <img src="./src/assets/goToExternalPage.png" className="ml-1 h-6 w-6" />
+                            <img src="/assets/goToExternalPage.png" className="ml-1 h-6 w-6" />
                         </button>
                     </div>
                 </div>

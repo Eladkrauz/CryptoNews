@@ -21,7 +21,7 @@ function FilterBar({ onCurrencyClick }) {
                             className="flex items-center font-bold text-black hover:text-gray-100"
                             onClick={() => onCurrencyClick(currency)}
                         >
-                            <img src={`/src/assets/${currency.toLowerCase()}-logo.png`} alt={`${currency} Logo`} className="h-5 w-5 mr-2" />
+                            <img src={`/assets/${currency.toLowerCase()}-logo.png`} alt={`${currency} Logo`} className="h-5 w-5 mr-2" />
                             {currency}
                         </button>
                     </li>

@@ -51,7 +51,7 @@ function ArticleSummary({ article, handleArticleClick }) {
                         onClick={handleArticleClick}
                     >
                         Read the Full Article
-                        <img src="./src/assets/click-mouse.png" className="ml-1 h-6 w-6" />
+                        <img src="/assets/click-mouse.png" className="ml-1 h-6 w-6" />
                     </button>
                 </div>
             </div>
