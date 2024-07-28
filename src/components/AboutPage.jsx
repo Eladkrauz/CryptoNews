@@ -6,15 +6,14 @@
 
 import React, { useContext } from 'react';
 import { DarkLightModeContext } from '../contexts/DarkLightModeContext';
-import EladKrauzImage from '../public/assets/EladKrauz.JPEG'
 
 // Array containing team member information including name, image, and description
 const teamMembers = [
-    { name: 'Elad Krauz', image: EladKrauzImage, description: 'Frontend Developer' },
-    { name: 'Lee Potashnik', image: '../public/assets/LeePotashnik.jpg', description: 'Project Manager' },
-    { name: 'Uri Ziv', image: '../public/assets/UriZiv.jpg', description: 'Backend Developer' },
-    { name: 'Tal Turgeman', image: '../public/assets/TalTurgeman.jpg', description: 'UI and Tailwind Developer' },
-    { name: 'Ofir Berkovitch', image: '../public/assets/OfirBerkovitch.jpg', description: 'Content Manager' }
+    { name: 'Elad Krauz', image: '/assets/EladKrauz.JPEG', description: 'Frontend Developer' },
+    { name: 'Lee Potashnik', image: '/assets/LeePotashnik.jpg', description: 'Project Manager' },
+    { name: 'Uri Ziv', image: '/assets/UriZiv.jpg', description: 'Backend Developer' },
+    { name: 'Tal Turgeman', image: '/assets/TalTurgeman.jpg', description: 'UI and Tailwind Developer' },
+    { name: 'Ofir Berkovitch', image: '/assets/OfirBerkovitch.jpg', description: 'Content Manager' }
 ];
 
 // Text content for various sections of the About page
