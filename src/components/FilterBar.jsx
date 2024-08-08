@@ -38,7 +38,7 @@ function FilterBar({ onCurrencyClick }) {
                     {currencies.map((currency, index) => (
                         <li key={index} className="flex-grow flex justify-center">
                             <button
-                                className="flex items-center font-bold text-black hover:text-gray-100"
+                                className="flex items-center font-bold xl:text-xl text-black hover:text-gray-100"
                                 onClick={() => onCurrencyClick(currency)}
                             >
                                 <img src={`/assets/${currency.toLowerCase()}-logo.png`} alt={`${currency} Logo`} className="h-5 w-5 mr-2" />

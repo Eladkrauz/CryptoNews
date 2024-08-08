@@ -9,11 +9,11 @@ import { DarkLightModeContext } from '../contexts/DarkLightModeContext';
 
 // Array containing team member information including name, image, and description
 const teamMembers = [
-    { name: 'Elad Krauz', image: '/assets/EladKrauz.JPEG', description: 'Frontend Developer' },
-    { name: 'Lee Potashnik', image: '/assets/LeePotashnik.jpg', description: 'Project Manager' },
-    { name: 'Uri Ziv', image: '/assets/UriZiv.jpg', description: 'Backend Developer' },
-    { name: 'Tal Turgeman', image: '/assets/TalTurgeman.jpg', description: 'UI and Tailwind Developer' },
-    { name: 'Ofir Berkovitch', image: '/assets/OfirBerkovitch.jpg', description: 'Content Manager' }
+    { name: 'Elad Krauz', image: '/assets/EladKrauz.JPEG', description: 'Frontend Developer', linkedin: 'https://www.linkedin.com/in/elad-krauz/' },
+    { name: 'Lee Potashnik', image: '/assets/LeePotashnik.jpg', description: 'Project Manager', linkedin: 'https://www.linkedin.com/in/lee-potashnik-19bb86267/' },
+    { name: 'Uri Ziv', image: '/assets/UriZiv.jpg', description: 'Verification Manager', linkedin: 'https://www.linkedin.com/in/uri-ziv-88052726a/' },
+    { name: 'Tal Turgeman', image: '/assets/TalTurgeman.jpg', description: 'UI and Tailwind Developer', linkedin: 'https://www.linkedin.com/in/tal-turjeman-44983a309/' },
+    { name: 'Ofir Berkovitch', image: '/assets/OfirBerkovitch.jpg', description: 'Content Manager', linkedin: 'https://www.linkedin.com/in/ofir-berkovitsh-78b804252/' }
 ];
 
 // Text content for various sections of the About page
@@ -44,8 +44,8 @@ const AboutPage = () => {
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>
-                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center">ABOUT CRYPTO NEWS</h2>
-                    <p className="text-base sm:text-lg text-justify">
+                    <h2 className="text-2xl sm:text-4xl font-bold mb-4 text-center">ABOUT CRYPTO NEWS</h2>
+                    <p className="text-lg sm:text-2xl text-justify">
                         {aboutCryptoNews}
                     </p>
                 </div>
@@ -55,13 +55,19 @@ const AboutPage = () => {
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>
-                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center">ABOUT THE TEAM</h2>
+                    <h2 className="text-2xl sm:text-4xl font-bold mb-4 text-center">ABOUT THE TEAM</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                         {teamMembers.map((member, index) => (
                             <div key={index} className="flex flex-col items-center">
-                                <img src={member.image} alt={member.name} className="rounded-full w-24 h-24 sm:w-32 sm:h-32 mb-4 border-gray-700 border-2 shadow-xl shadow-gray-700" />
-                                <p className="text-base sm:text-lg font-bold">{member.name}</p>
-                                <p className="text-base sm:text-lg">{member.description}</p>
+                                <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                                    <img 
+                                        src={member.image} 
+                                        alt={member.name} 
+                                        className="rounded-full w-32 h-32 mb-4 border-gray-700 border-2 shadow-xl shadow-gray-700" 
+                                    />
+                                </a>
+                                <p className="text-xl sm:text-2xl font-bold text-center">{member.name}</p>
+                                <p className="text-xl sm:text-2xl text-center">{member.description}</p>
                             </div>
                         ))}
                     </div>
@@ -72,8 +78,8 @@ const AboutPage = () => {
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>
-                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center">OUR VISION</h2>
-                    <p className="text-base sm:text-lg text-justify">
+                    <h2 className="text-2xl sm:text-4xl font-bold mb-4 text-center">OUR VISION</h2>
+                    <p className="text-lg sm:text-2xl text-justify">
                         {ourVision}
                     </p>
                 </div>
@@ -83,29 +89,29 @@ const AboutPage = () => {
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>
-                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center">OUR VALUES</h2>
+                    <h2 className="text-2xl sm:text-4xl font-bold mb-4 text-center">OUR VALUES</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         <div className="flex flex-col items-center">
-                            <h2 className="text-lg sm:text-xl font-bold mb-2 text-center">Integrity</h2>
-                            <p className="text-base sm:text-lg text-center">
+                            <h2 className="text-lg sm:text-2xl font-bold mb-2 text-center">Integrity</h2>
+                            <p className="text-lg sm:text-2xl text-center">
                                 {coreValues.integrity}
                             </p>
                         </div>
                         <div className="flex flex-col items-center">
-                            <h2 className="text-lg sm:text-xl font-bold mb-2 text-center">Innovation</h2>
-                            <p className="text-base sm:text-lg text-center">
+                            <h2 className="text-lg sm:text-2xl font-bold mb-2 text-center">Innovation</h2>
+                            <p className="text-lg sm:text-2xl text-center">
                                 {coreValues.innovation}
                             </p>
                         </div>
                         <div className="flex flex-col items-center">
-                            <h2 className="text-lg sm:text-xl font-bold mb-2 text-center">Excellence</h2>
-                            <p className="text-base sm:text-lg text-center">
+                            <h2 className="text-lg sm:text-2xl font-bold mb-2 text-center">Excellence</h2>
+                            <p className="text-lg sm:text-2xl text-center">
                                 {coreValues.excellence}
                             </p>
                         </div>
                         <div className="flex flex-col items-center">
-                            <h2 className="text-lg sm:text-xl font-bold mb-2 text-center">Community</h2>
-                            <p className="text-base sm:text-lg text-center">
+                            <h2 className="text-lg sm:text-2xl font-bold mb-2 text-center">Community</h2>
+                            <p className="text-lg sm:text-2xl text-center">
                                 {coreValues.community}
                             </p>
                         </div>
@@ -117,8 +123,8 @@ const AboutPage = () => {
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>
-                    <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center">FUTURE DEVELOPMENT</h2>
-                    <p className="text-base sm:text-lg text-justify">
+                    <h2 className="text-2xl sm:text-4xl font-bold mb-4 text-center">FUTURE DEVELOPMENT</h2>
+                    <p className="text-lg sm:text-2xl text-justify">
                         {futureDevelopment}
                     </p>
                 </div>

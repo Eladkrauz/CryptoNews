@@ -24,9 +24,9 @@ function MenuBar({ onPageClick, title }) {
         >
             <div className="flex justify-between items-center w-full px-4">
                 <div className="flex items-center">
-                    <img src="../assets/crypto-news-logo.png" alt="Website Logo" className="clickable h-20 w-20 mr-2" onClick={showHomePage} />
+                    <img src="../assets/crypto-news-logo.png" alt="Website Logo" className="clickable h-20 w-20 lg:w-32 lg:h-32 mr-2" onClick={showHomePage} />
                     <span
-                        className={`text-2xl font-bold font-serif ${darkLightMode === 'light' ? 'text-black' : 'text-white'}`}>{title}
+                        className={`text-2xl md:text-3xl lg:text-4xl font-bold font-serif ${darkLightMode === 'light' ? 'text-black' : 'text-white'}`}>{title}
                     </span>
                 </div>
                 <div className="flex md:hidden">
@@ -47,19 +47,19 @@ function MenuBar({ onPageClick, title }) {
                     </button>
                 </div>
                 <nav className="hidden md:flex space-x-8">
-                    <ul className={`flex space-x-8 font-bold ${darkLightMode === 'light' ? 'text-black' : 'text-white'}`}>
+                    <ul className={`flex space-x-8 md:space-x-4 lg:space-x-8 font-bold ${darkLightMode === 'light' ? 'text-black' : 'text-white'}`}>
                         <li>
-                            <button onClick={showHomePage} className="text-xl font-bold hover:text-yellow-700 focus:outline-none">
+                            <button onClick={showHomePage} className="text-xl md:text-2xl lg:texl-3xl font-bold hover:text-yellow-700 focus:outline-none">
                                 Home
                             </button>
                         </li>
                         <li>
-                            <button onClick={showAboutPage} className="text-xl font-bold hover:text-yellow-700 focus:outline-none">
+                            <button onClick={showAboutPage} className="text-xl md:text-2xl lg:texl-3xl font-bold hover:text-yellow-700 focus:outline-none">
                                 About
                             </button>
                         </li>
                         <li>
-                            <button onClick={showContactPage} className="text-xl font-bold hover:text-yellow-700 focus:outline-none">
+                            <button onClick={showContactPage} className="text-xl md:text-2xl lg:texl-3xl font-bold hover:text-yellow-700 focus:outline-none">
                                 Contact Us
                             </button>
                         </li>
@@ -81,17 +81,17 @@ function MenuBar({ onPageClick, title }) {
                     }`}>
                     <ul className="flex flex-col items-center space-y-4">
                         <li>
-                            <button onClick={showHomePage} className="font-bold hover:text-yellow-700 focus:outline-none">
+                            <button onClick={showHomePage} className="font-bold text-xl hover:text-yellow-700 focus:outline-none">
                                 Home
                             </button>
                         </li>
                         <li>
-                            <button onClick={showAboutPage} className="font-bold hover:text-yellow-700 focus:outline-none">
+                            <button onClick={showAboutPage} className="font-bold text-xl hover:text-yellow-700 focus:outline-none">
                                 About
                             </button>
                         </li>
                         <li>
-                            <button onClick={showContactPage} className="font-bold hover:text-yellow-700 focus:outline-none">
+                            <button onClick={showContactPage} className="font-bold text-xl hover:text-yellow-700 focus:outline-none">
                                 Contact Us
                             </button>
                         </li>
