@@ -63,7 +63,7 @@ const AboutPage = () => {
                                     <img 
                                         src={member.image} 
                                         alt={member.name} 
-                                        className="rounded-full w-32 h-32 mb-4 border-gray-700 border-2 shadow-xl shadow-gray-700" 
+                                        className={`rounded-full w-32 h-32 mb-4 border-gray-700 border-2 shadow-xl shadow-gray-700 ${darkLightMode === 'light' ? 'hover:shadow-gray-900' : 'hover:shadow-gray-400' }`} 
                                     />
                                 </a>
                                 <p className="text-xl sm:text-2xl font-bold text-center">{member.name}</p>
