@@ -5,7 +5,8 @@
  * The component uses the dark/light mode context to apply appropriate styles.
  */
 
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { DarkLightModeContext } from '../contexts/DarkLightModeContext';
 import countries from './Countries';
 import emailjs from 'emailjs-com';
@@ -26,6 +27,14 @@ function ContactForm() {
     }); // State for the form data
     const [errors, setErrors] = useState({}); // State for form validation errors
     const [emailSent, setEmailSent] = useState(false); // State to track if the email has been sent
+    const location = useLocation(); // useLocation to detect the current path
+
+    // Reset emailSent state whenever the component mounts
+    useEffect(() => {
+        if (location.pathname === '/contact') {
+            setEmailSent(false);
+        }
+    }, [location]);
 
     // Handle change in form inputs
     const handleChange = (e) => {
@@ -92,6 +101,17 @@ function ContactForm() {
                     console.log('SUCCESS!', response.status, response.text);
                     console.log('Email sent successfully to' + formData.email);
                     setEmailSent(true);
+
+                    // Reset form fields
+                    setFormData({
+                        firstName: '',
+                        lastName: '',
+                        email: '',
+                        phone: '',
+                        contactMethod: '',
+                        country: '',
+                        message: ''
+                    });
                 }, (error) => {
                     console.error('Email sending failed', error);
                 });
