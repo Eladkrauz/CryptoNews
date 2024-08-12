@@ -24,6 +24,7 @@ function App() {
     const navigate = useNavigate(); // Hook to programmatically navigate between routes
 
     useEffect(() => {
+        console.log(location)
         // Update the title based on the current location and state
         if (location.pathname === "/") {
             if (location.state?.currency) {

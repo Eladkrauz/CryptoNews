@@ -49,13 +49,12 @@ export const fetchArticlesByCurrencies = async (currencies) => {
     }
     const query = formatCurrencies(currencies);
     try {
-        // throw new Error("Try"); // for testing purposes
         const response = await axios.get(`${BASE_URL}`, {
             params: {
                 q: query,
                 apikey: API_KEY,
                 lang: 'en',
-                max: 100
+                max: 10
             },
         });
         return formatArticles(response.data.articles, currencies);

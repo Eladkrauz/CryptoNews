@@ -40,7 +40,7 @@ const AboutPage = () => {
         <div className="flex flex-col items-center p-4 sm:p-8">
             <div className="w-full max-w-5xl">
                 {/* Section: About Crypto News */}
-                <div className={`rounded-lg shadow-lg p-4 sm:p-6 mb-8 ${darkLightMode === 'light'
+                <div className={`rounded-lg shadow-lg p-4 sm:p-6 mb-8 hover:shadow-gray-500 ${darkLightMode === 'light'
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>
@@ -51,7 +51,7 @@ const AboutPage = () => {
                 </div>
 
                 {/* Section: About the Team */}
-                <div className={`rounded-lg shadow-lg p-4 sm:p-6 mb-8 ${darkLightMode === 'light'
+                <div className={`rounded-lg shadow-lg p-4 sm:p-6 mb-8 hover:shadow-gray-500 ${darkLightMode === 'light'
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>
@@ -74,7 +74,7 @@ const AboutPage = () => {
                 </div>
 
                 {/* Section: Our Vision */}
-                <div className={`rounded-lg shadow-lg p-4 sm:p-6 mb-8 ${darkLightMode === 'light'
+                <div className={`rounded-lg shadow-lg p-4 sm:p-6 mb-8 hover:shadow-gray-500 ${darkLightMode === 'light'
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>
@@ -85,7 +85,7 @@ const AboutPage = () => {
                 </div>
 
                 {/* Section: Core Values */}
-                <div className={`rounded-lg shadow-lg p-4 sm:p-6 mb-8 ${darkLightMode === 'light'
+                <div className={`rounded-lg shadow-lg p-4 sm:p-6 mb-8 hover:shadow-gray-500 ${darkLightMode === 'light'
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>
@@ -119,7 +119,7 @@ const AboutPage = () => {
                 </div>
 
                 {/* Section: Future Development */}
-                <div className={`rounded-lg shadow-lg p-4 sm:p-6 ${darkLightMode === 'light'
+                <div className={`rounded-lg shadow-lg p-4 sm:p-6 hover:shadow-gray-500 ${darkLightMode === 'light'
                     ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
                     : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
                     }`}>

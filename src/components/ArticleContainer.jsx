@@ -20,8 +20,6 @@ function ArticleContainer({ onArticleClick, currenciesToShow }) {
     // Fetch articles based on the selected currencies
     useEffect(() => {
         const getArticles = async () => {
-            setApiError(true); // for maintaining enough API calls
-            return;
             if (currenciesToShow && currenciesToShow.length > 0) {
                 console.log(currenciesToShow);
                 const articlesData = await fetchArticlesByCurrencies(currenciesToShow);

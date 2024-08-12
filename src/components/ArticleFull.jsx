@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { DarkLightModeContext } from '../contexts/DarkLightModeContext';
 
-function ArticleFull({ article, onClose, cameFrom }) {
+function ArticleFull({ article, onClose }) {
     const { darkLightMode } = useContext(DarkLightModeContext);
 
     const handleClick = () => {
