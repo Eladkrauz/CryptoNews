@@ -1,6 +1,15 @@
+/**
+ * MenuBar.jsx
+ * 
+ * This file defines the MenuBar component for the Crypto News application.
+ * The MenuBar component provides navigation links for navigating between different pages of the application, such as Home, About, and Contact.
+ * It also includes a dark/light mode toggle button and a mobile-friendly menu.
+ */
+
 import React, { useContext, useState } from 'react';
 import { DarkLightModeContext } from '../contexts/DarkLightModeContext';
 import '../styles/ButtonHover.css';
+import StylesObject from '../styles/StylesObject';
 
 /**
  * MenuBar component provides navigation links and a mode toggle button.
@@ -8,65 +17,69 @@ import '../styles/ButtonHover.css';
  * @param {string} title - The title to display in the menu bar.
  */
 function MenuBar({ onPageClick, title }) {
+    const style = StylesObject.menuBar;
     const { showHomePage, showAboutPage, showContactPage } = onPageClick; // Destructure navigation functions
     const { darkLightMode, toggleMode } = useContext(DarkLightModeContext); // Access the dark/light mode context
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // State to track the mobile menu's open/close state
 
+    /**
+     * Toggle the mobile menu between open and closed states.
+     */
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
     return (
-        <div className={`flex flex-col items-center ${darkLightMode === 'light'
-            ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black'
-            : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700'
-            } p-2 shadow-md w-full`}
-        >
-            <div className="flex justify-between items-center w-full px-4">
-                <div className="flex items-center">
-                    <img src="../assets/crypto-news-logo.png" alt="Website Logo" className="clickable h-20 w-20 lg:w-32 lg:h-32 mr-2" onClick={showHomePage} />
-                    <span
-                        className={`text-2xl md:text-3xl lg:text-4xl font-bold font-serif ${darkLightMode === 'light' ? 'text-black' : 'text-white'}`}>{title}
-                    </span>
+        <div className={style.outerWrapperTheme(darkLightMode)}>
+            <div className={style.headerWrapper}>
+                <div className={style.logo.wrapper}>
+                    {/* Logo image that navigates to the home page when clicked */}
+                    <img src={style.logo.path} alt="Website Logo" className={style.logo.style} onClick={showHomePage} />
+                    {/* Display the title passed as a prop */}
+                    <span className={style.titleTextTheme(darkLightMode)}>{title}</span>
                 </div>
-                <div className="flex md:hidden">
-                    <button
-                        className="text-black font-bold hover:text-yellow-700 focus:outline-none"
-                        onClick={toggleMenu}
-                    >
-                        <svg
-                            className="h-8 w-8"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            color={`${darkLightMode === 'light' ? "black" : "white"}`}
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
+                <div className={style.mobileMenu.buttonWrapper}>
+                    {/* Button to toggle the mobile menu */}
+                    <button className={style.mobileMenu.buttonStyle} onClick={toggleMenu}>
+                        {/* Conditionally render the hamburger or 'X' icon based on the menu state */}
+                        {isMenuOpen ? (
+                            // SVG for 'X' icon when the menu is open
+                            <svg
+                                className={style.mobileMenu.hamburgerIcon}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                                color={`${darkLightMode === 'light' ? "black" : "white"}`}
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        ) : (
+                            // SVG for hamburger icon when the menu is closed
+                            <svg
+                                className={style.mobileMenu.hamburgerIcon}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                                color={`${darkLightMode === 'light' ? "black" : "white"}`}
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                            </svg>
+                        )}
                     </button>
                 </div>
-                <nav className="hidden md:flex space-x-8">
-                    <ul className={`flex space-x-8 md:space-x-4 lg:space-x-8 font-bold ${darkLightMode === 'light' ? 'text-black' : 'text-white'}`}>
+                {/* Regular navigation menu for desktop view */}
+                <nav className={style.regMenu.wrapper}>
+                    <ul className={style.regMenu.listTheme(darkLightMode)}>
+                        <li><button onClick={showHomePage} className={style.regMenu.item}>Home</button></li>
+                        <li><button onClick={showAboutPage} className={style.regMenu.item}>About</button></li>
+                        <li><button onClick={showContactPage} className={style.regMenu.item}>Contact Us</button></li>
                         <li>
-                            <button onClick={showHomePage} className="text-xl md:text-2xl lg:texl-3xl font-bold hover:text-yellow-700 focus:outline-none">
-                                Home
-                            </button>
-                        </li>
-                        <li>
-                            <button onClick={showAboutPage} className="text-xl md:text-2xl lg:texl-3xl font-bold hover:text-yellow-700 focus:outline-none">
-                                About
-                            </button>
-                        </li>
-                        <li>
-                            <button onClick={showContactPage} className="text-xl md:text-2xl lg:texl-3xl font-bold hover:text-yellow-700 focus:outline-none">
-                                Contact Us
-                            </button>
-                        </li>
-                        <li>
-                            <button onClick={toggleMode} className="hover:text-yellow-700 focus:outline-none pr-6">
+                            {/* Button to toggle dark/light mode */}
+                            <button onClick={toggleMode} className={style.regMenu.modeToggleWrapper}>
                                 <span
-                                    className={darkLightMode === 'light' ? "button-img-dark-mode" : "button-img-light-mode"}
+                                    className={style.regMenu.modeToggleIcon[darkLightMode]}
                                     alt="Toggle Mode">
                                 </span>
                             </button>
@@ -75,33 +88,16 @@ function MenuBar({ onPageClick, title }) {
                 </nav>
             </div>
             {isMenuOpen && (
-                <nav className={`md:hidden w-full ${darkLightMode === 'light'
-                    ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
-                    : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-white'
-                    }`}>
-                    <ul className="flex flex-col items-center space-y-4">
+                /* Mobile-friendly navigation menu */
+                <nav className={style.mobileMenu.wrapperTheme(darkLightMode)}>
+                    <ul className={style.mobileMenu.layout}>
+                        <li><button onClick={showHomePage} className={style.mobileMenu.item}>Home</button></li>
+                        <li><button onClick={showAboutPage} className={style.mobileMenu.item}>About</button></li>
+                        <li><button onClick={showContactPage} className={style.mobileMenu.item}>Contact Us</button></li>
                         <li>
-                            <button onClick={showHomePage} className="font-bold text-xl hover:text-yellow-700 focus:outline-none">
-                                Home
-                            </button>
-                        </li>
-                        <li>
-                            <button onClick={showAboutPage} className="font-bold text-xl hover:text-yellow-700 focus:outline-none">
-                                About
-                            </button>
-                        </li>
-                        <li>
-                            <button onClick={showContactPage} className="font-bold text-xl hover:text-yellow-700 focus:outline-none">
-                                Contact Us
-                            </button>
-                        </li>
-                        <li>
-                            <button onClick={toggleMode} className="font-bold text-black hover:text-yellow-700 focus:outline-none">
-                                {darkLightMode === 'light' ? (
-                                    <img src="../assets/dark-mode.png" alt="Dark Mode" className="w-6 h-6" />
-                                ) : (
-                                    <img src="../assets/light-mode.png" alt="Light Mode" className="w-6 h-6" />
-                                )}
+                            {/* Mobile mode toggle button */}
+                            <button onClick={toggleMode} className={style.mobileMenu.item}>
+                                <img src={style.mobileMenu.modeToggle.path[darkLightMode]} alt="Mode" className={style.mobileMenu.modeToggle.imageStyle} />
                             </button>
                         </li>
                     </ul>

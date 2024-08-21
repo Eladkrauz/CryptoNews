@@ -1,23 +1,33 @@
-/* ArticleContainer.css */
+/**
+ * ArticleContainer.css
+ * 
+ * This file contains the CSS styles for the ArticleContainer component in the Crypto News application.
+ * It defines the layout and behavior of the article summary carousel, including transitions and positioning.
+ */
+
+/* Container for the article summary carousel, with hidden overflow to support sliding effect */
 .article-summary-container {
     width: 100%;
-    overflow: hidden;
-    position: relative;
+    overflow: hidden; /* Ensures that overflowing content is hidden */
+    position: relative; /* Allows for positioning of child elements relative to this container */
 }
 
+/* Wrapper for the article summary items, using flexbox for horizontal layout */
 .article-summary-wrapper {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+    display: flex; /* Displays article summaries in a row */
+    transition: transform 0.5s ease-in-out; /* Smooth transition effect when sliding between articles */
     width: 100%;
 }
 
+/* Each article summary item takes up the full width of the container */
 .article-summary-item {
-    min-width: 100%;
+    min-width: 100%; /* Ensures each article takes up the entire width of the container */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Centers the article content horizontally */
+    align-items: center; /* Centers the article content vertically */
 }
 
+/* Styles for the individual article summaries */
 .article-summary {
-    text-align: center;
+    text-align: center; /* Centers the text inside each article summary */
 }

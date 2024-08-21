@@ -1,22 +1,31 @@
 /**
+ * ContactForm.jsx
+ * 
  * This file defines the ContactForm component for the Crypto News application.
- * The ContactForm component provides a form for users to contact the team with their details and messages.
- * It includes validation for the input fields and uses emailjs to send the form data as an email.
- * The component uses the dark/light mode context to apply appropriate styles.
+ * The ContactForm component allows users to send messages by filling out a form.
+ * It integrates with emailJS for sending emails and utilizes form validation through a custom hook.
  */
 
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { DarkLightModeContext } from '../contexts/DarkLightModeContext';
-import countries from './Countries';
 import emailjs from 'emailjs-com';
+import StylesObject from '../styles/StylesObject';
+import { useContactForm } from '../hooks/useContactForm';
+import TextInput from './TextInput';
+import SelectInput from './SelectInput';
+import RadioInput from './RadioInput';
+import TextArea from './TextArea';
 
 /**
  * ContactForm component provides a contact form for users to send messages.
  */
 function ContactForm() {
+    const style = StylesObject.contactPage;
     const { darkLightMode } = useContext(DarkLightModeContext); // Access the dark/light mode context
-    const [formData, setFormData] = useState({
+
+    const location = useLocation(); // Hook to get the current location
+    const initialFormState = {
         firstName: '',
         lastName: '',
         email: '',
@@ -24,223 +33,123 @@ function ContactForm() {
         contactMethod: '',
         country: '',
         message: ''
-    }); // State for the form data
-    const [errors, setErrors] = useState({}); // State for form validation errors
+    };
     const [emailSent, setEmailSent] = useState(false); // State to track if the email has been sent
-    const location = useLocation(); // useLocation to detect the current path
 
-    // Reset emailSent state whenever the component mounts
+    // Use custom hook for form state and validation
+    const { formData, errors, handleChange, validate, setFormData } = useContactForm(initialFormState);
+
     useEffect(() => {
+        /**
+         * Reset the email sent status when the user navigates to the contact page.
+         */
         if (location.pathname === '/contact') {
             setEmailSent(false);
         }
     }, [location]);
 
-    // Handle change in form inputs
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData({
-            ...formData,
-            [name]: type === 'checkbox' ? checked : value
-        });
-    };
-
-    // Validate the form inputs
-    const validate = () => {
-        let errors = {};
-        const nameRegex = /^[A-Za-z\s\-]+$/;
-
-        if (!formData.firstName) {
-            errors.firstName = 'First Name is required';
-        } else if (!nameRegex.test(formData.firstName)) {
-            errors.firstName = 'First Name is invalid. Only letters, spaces, and hyphens are allowed.';
-        }
-
-        if (!formData.lastName) {
-            errors.lastName = 'Last Name is required';
-        } else if (!nameRegex.test(formData.lastName)) {
-            errors.lastName = 'Last Name is invalid. Only letters, spaces, and hyphens are allowed.';
-        }
-
-        if (!formData.email) {
-            errors.email = 'Email is required';
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            errors.email = 'Email address is invalid';
-        }
-
-        if (!formData.phone) {
-            errors.phone = 'Phone number is required';
-        } else if (!/^\d+$/.test(formData.phone)) {
-            errors.phone = 'Phone number is invalid. Only digits are allowed.';
-        }
-
-        if (!formData.contactMethod) errors.contactMethod = 'Preferred contact method is required';
-        if (!formData.country) errors.country = 'Country is required';
-        if (!formData.message) errors.message = 'Message is required';
-
-        setErrors(errors);
-        return Object.keys(errors).length === 0;
-    };
-
-    // Handle form submission
+    /**
+     * Handle form submission.
+     * Validates the form and sends the email using emailJS if validation passes.
+     * Resets the form after a successful email submission.
+     * @param {Event} e - The form submit event.
+     */
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent the default form submission behavior
         if (validate()) {
-            const templateParams = {
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                email: formData.email,
-                phone: formData.phone,
-                contactMethod: formData.contactMethod,
-                country: formData.country,
-                message: formData.message
-            };
+            const templateParams = { ...formData }; // Prepare the template parameters for emailJS
 
             emailjs.send('service_skdqwvt', 'template_58scwmi', templateParams, 'aegYV7g2GSP80nATB')
-                .then((response) => {
-                    console.log('SUCCESS!', response.status, response.text);
-                    console.log('Email sent successfully to' + formData.email);
-                    setEmailSent(true);
-
-                    // Reset form fields
-                    setFormData({
-                        firstName: '',
-                        lastName: '',
-                        email: '',
-                        phone: '',
-                        contactMethod: '',
-                        country: '',
-                        message: ''
-                    });
+                .then(() => {
+                    setEmailSent(true); // Set email sent status to true on success
+                    setFormData(initialFormState); // Reset form fields
                 }, (error) => {
-                    console.error('Email sending failed', error);
+                    console.error('Email sending failed', error); // Log an error if the email fails to send
                 });
         }
     };
 
     return (
-        <div className={`flex justify-center ${darkLightMode === 'light' ? 'text-black' : 'text-gray-200'}`}>
-            <div className={`contact-us text-center w-11/12 md:w-11/12 m-4 lg:w-11/12 xl:w-3/4 rounded-lg shadow-lg p-6 mb-8 ${darkLightMode === 'light'
-                ? 'bg-gradient-to-r from-gray-300 via-white to-gray-300 shadow-black text-black'
-                : 'bg-gradient-to-r from-gray-800 via-black to-gray-800 shadow-gray-700 text-gray-200'
-                }`}>
+        <div className={`${StylesObject.general.getOuterWrapper(darkLightMode)}`}>
+            <div className={`${style.getContactFormContainer(darkLightMode)}`}>
                 {emailSent ? (
                     <div>
-                        <div className="flex justify-center my-6">
-                            {darkLightMode === 'light' ? (
-                                <img src="../assets/confirm-light-mode.png" alt="Dark Mode" className="w-20 h-20" />
-                                ) : (
-                                <img src="../assets/confirm-dark-mode.png" alt="Light Mode" className="w-20 h-20" />
-                                )}
+                        <div className={style.successContainer}>
+                            {/* Success message displayed when email is sent */}
+                            <img src={style.getSuccessImage(darkLightMode)} alt='emailSent' className={style.image} />
                         </div>
-                        <h1 className='text-5xl font-bold mb-4'>Thank You!</h1>
-                        <p className='text-2xl'>Your request has been sent successfully.</p>
+                        <h1 className={style.successTitle}>Thank You!</h1>
+                        <p className={style.successMessage}>Your request has been sent successfully.</p>
                     </div>
                 ) : (
                     <>
                         <div>
-                            <h1 className='text-5xl lg:text-6xl font-bold mb-4'>CONTACT US</h1>
-                            <p className='text-2xl lg:text-3xl'>Let's get this conversation started!</p>
-                            <p className='text-2xl lg:text-3xl'>Tell us a bit about yourself, and we will get in touch as soon as we can.</p>
-                            <p className='text-2xl lg:text-3xl'>Feel free to write about improvements, future features, and any other issue!</p>
-                            <hr className={`border-t-2 my-4 ${darkLightMode === 'light' ? 'border-gray-700' : 'border-gray-200'}`} />
+                            <h1 className={style.headingLarge}>CONTACT US</h1>
+                            {/* Contact form description */}
+                            <p className={style.paragraph}>Let's get this conversation started!</p>
+                            <p className={style.paragraph}>Tell us a bit about yourself, and we will get in touch as soon as we can.</p>
+                            <p className={style.paragraph}>Feel free to write about improvements, future features, and any other issue!</p>
+                            <hr className={style.getSeperator(darkLightMode)} />
                         </div>
-                        <form onSubmit={handleSubmit} className='form-layout text-xl justify-between items-center grid grid-cols-12 gap-4 mt-5'>
-                            <div className="col-span-12 md:col-span-6">
-                                <label className='font-bold block text-2xl'>First Name:</label>
-                                <input
-                                    type="text"
-                                    name="firstName"
-                                    value={formData.firstName}
-                                    onChange={handleChange}
-                                    className={`first-name-input mt-1 p-3 w-full border
-                                    ${darkLightMode === 'light' ? 'border-gray-300 rounded' : 'border-gray-300 rounded bg-gray-900'}`}
-                                />
-                                {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
-                            </div>
-
-                            <div className="col-span-12 md:col-span-6">
-                                <label className='font-bold block text-2xl'>Last Name:</label>
-                                <input
-                                    type="text"
-                                    name="lastName"
-                                    value={formData.lastName}
-                                    onChange={handleChange}
-                                    className={`last-name-input mt-1 p-3 w-full border
-                                    ${darkLightMode === 'light' ? 'border-gray-300 rounded' : 'border-gray-300 rounded bg-gray-900'}`}
-                                />
-                                {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName}</p>}
-                            </div>
-
-                            <div className="col-span-12 md:col-span-6">
-                                <label className='font-bold block text-2xl'>Email:</label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    className={`email-input mt-1 p-3 w-full border
-                                    ${darkLightMode === 'light' ? 'border-gray-300 rounded' : 'border-gray-300 rounded bg-gray-900'}`}
-                                />
-                                {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
-                            </div>
-
-                            <div className="col-span-12 md:col-span-6">
-                                <label className='font-bold block text-2xl'>Phone:</label>
-                                <input
-                                    type="tel"
-                                    name="phone"
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                    className={`phone-input mt-1 p-3 w-full border
-                                    ${darkLightMode === 'light' ? 'border-gray-300 rounded' : 'border-gray-300 rounded bg-gray-900'}`}
-                                />
-                                {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
-                            </div>
-
-                            <div className="col-span-12 md:col-span-6">
-                                <label className='font-bold block text-2xl'>Country:</label>
-                                <select
-                                    name="country"
-                                    value={formData.country}
-                                    onChange={handleChange}
-                                    className={`form-select mt-1 p-3 w-full border
-                                    ${darkLightMode === 'light' ? 'border-gray-300 rounded' : 'border-gray-300 rounded bg-gray-900'}`}>
-                                    <option value="" disabled>Choose...</option>
-                                    {countries.map(country => (
-                                        <option key={country} value={country}>{country}</option>
-                                    ))}
-                                </select>
-                                {errors.country && <p className="text-red-500 text-sm">{errors.country}</p>}
-                            </div>
-
-                            <div className="col-span-12 md:col-span-6">
-                                <label className='font-bold block text-2xl'>Preferred Contact Method:</label>
-                                <div className="flex mt-2 justify-center space-x-12">
-                                    <label className="mr-4 text-2xl"><input type="radio" name="contactMethod" value="email" checked={formData.contactMethod === 'email'} onChange={handleChange} className="mr-1" /> Email</label>
-                                    <label className="mr-4 text-2xl"><input type="radio" name="contactMethod" value="phone" checked={formData.contactMethod === 'phone'} onChange={handleChange} className="mr-1" /> Phone</label>
-                                    <label className="mr-4 text-2xl"><input type="radio" name="contactMethod" value="both" checked={formData.contactMethod === 'both'} onChange={handleChange} className="mr-1" /> Both</label>
-                                </div>
-                                {errors.contactMethod && <p className="text-red-500 text-sm">{errors.contactMethod}</p>}
-                            </div>
-
-                            <div className="col-span-12">
-                                <label className='font-bold block text-2xl'>Message:</label>
-                                <textarea
-                                    name="message"
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    className={`message-input resize-none mt-1 p-3 w-full border
-                                    ${darkLightMode === 'light' ? 'border-gray-300 rounded' : 'border-gray-300 rounded bg-gray-900'}`}
-                                    rows="4"
-                                />
-                                {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
-                            </div>
-
-                            <div className="col-span-12">
-                                <button
-                                    type="submit"
-                                    className="my-2 p-3 text-2xl bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black shadow-gray-800 hover:shadow-black shadow-lg font-bold rounded hover:from-yellow-500 hover:via-yellow-600 hover:to-yellow-500 w-full sm:w-auto md:w-full lg:w-auto 3d-submit-button">Submit</button>
+                        {/* Contact form */}
+                        <form onSubmit={handleSubmit} className={style.formLayout}>
+                            <TextInput
+                                label="First Name"
+                                name="firstName"
+                                value={formData.firstName}
+                                onChange={handleChange}
+                                error={errors.firstName}
+                            />
+                            <TextInput
+                                label="Last Name"
+                                name="lastName"
+                                value={formData.lastName}
+                                onChange={handleChange}
+                                error={errors.lastName}
+                            />
+                            <TextInput
+                                label="Email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                error={errors.email}
+                            />
+                            <TextInput
+                                label="Phone"
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleChange}
+                                error={errors.phone}
+                            />
+                            <SelectInput
+                                label="Country"
+                                name="country"
+                                value={formData.country}
+                                onChange={handleChange}
+                                error={errors.country}
+                            />
+                            <RadioInput
+                                label="Preferred Contact Method"
+                                name="contactMethod"
+                                value={formData.contactMethod}
+                                onChange={handleChange}
+                                options={[
+                                    { label: 'Email', value: 'email' },
+                                    { label: 'Phone', value: 'phone' },
+                                    { label: 'Both', value: 'both' }
+                                ]}
+                                error={errors.contactMethod}
+                            />
+                            <TextArea
+                                label="Message"
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                error={errors.message}
+                            />
+                            <div className={style.inputContainerFull}>
+                                {/* Submit button for the form */}
+                                <button type="submit" className={style.submitButton}>Submit</button>
                             </div>
                         </form>
                     </>

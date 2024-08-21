@@ -1,6 +1,15 @@
+/**
+ * ArticleSummary.jsx
+ * 
+ * This file defines the ArticleSummary component for the Crypto News application.
+ * The ArticleSummary component displays a brief summary of a given article, including the title, image, and summary text.
+ * It provides a clickable interface to view the full article.
+ */
+
 import React, { useContext } from 'react';
 import { DarkLightModeContext } from '../contexts/DarkLightModeContext';
 import '../styles/ButtonHover.css';
+import StylesObject from '../styles/StylesObject';
 
 /**
  * ArticleSummary component displays a summary of an article.
@@ -8,6 +17,8 @@ import '../styles/ButtonHover.css';
  * @param {function} handleArticleClick - Function to handle the event when the article is clicked.
  */
 function ArticleSummary({ article, handleArticleClick }) {
+    const style = StylesObject.articleSummary;
+
     const { darkLightMode } = useContext(DarkLightModeContext); // Access the dark/light mode context
 
     if (!article) {
@@ -15,50 +26,43 @@ function ArticleSummary({ article, handleArticleClick }) {
     }
 
     return (
-        <div className="article-summary m-4 flex flex-col items-center justify-center xl:flex-row xl:items-center xl:justify-center 2xl:w-10/12 mx-auto">
-            <div className="flex flex-col items-center justify-center xl:flex-row xl:w-full xl:justify-center">
-                <div className="w-full flex justify-center xl:w-1/2 p-4">
+        <div className={style.wrapper}>
+            <div className={style.layout}>
+                <div className={style.imageContainer}>
+                    {/* Display article image with a dynamic theme, clickable to show the full article */}
                     <img 
-                        className={`w-11/12 sm:w-3/4 md:w-2/3 xl:max-w-md 2xl:max-w-lg border-2 shadow-lg hover:shadow-gray-700 ${darkLightMode === 'light' ? 'border-black shadow-black' : 'border-white shadow-gray-500'
-                        }`} 
+                        className={style.getImageTheme(darkLightMode)} 
                         src={article.image} 
                         alt={article.title} 
                         onClick={handleArticleClick}
                     />
                 </div>
-                <div className={`mt-4 xl:mt-0 xl:ml-6 2xl:ml-8 w-11/12 lg:w-5/6 xl:w-1/2 ${darkLightMode === 'light' ? 'text-black' : 'text-white'
-                    } text-center xl:text-left`}>
-                    <div className="flex justify-center">
-                        <h1 
-                            className={`font-bold text-center w-5/6 text-2xl lg:text-4xl mt-2 mb-4 border-2 p-2 xl:p-3 2xl:p-4 hover:shadow-gray-700 ${darkLightMode === 'light' ? 'text-black shadow-black shadow-xl border-black' : 'text-white shadow-gray-500 shadow-lg border-white'
-                            }`} 
-                            onClick={handleArticleClick}
-                        >
+                <div className={style.getTextSectionTheme(darkLightMode)}>
+                    <div className={StylesObject.general.outerWrapper}>
+                        {/* Display article title, clickable to show the full article */}
+                        <h1 className={style.h1Wrapper(darkLightMode)} onClick={handleArticleClick}>
                             {article.title}
                         </h1>
                     </div>
-                    <h3 
-                        className={`text-center text-lg lg:text-2xl xl:text-xl 2xl:text-2xl my-4 ${darkLightMode === 'light' ? 'text-gray-500' : 'text-gray-400'
-                        }`}
-                    >
+                    {/* Display article source, date, and time */}
+                    <h3 className={style.h3Wrapper(darkLightMode)}>
                         {article.source} • {article.date} • {article.time}
                     </h3>
-                    <div className="flex justify-center">
-                        <p 
-                            className={`text-lg lg:text-2xl xl:text-xl 2xl:text-2xl text-justify lg:w-11/12 ${darkLightMode === 'light' ? 'text-gray-800' : 'text-gray-200'
-                            }`}
-                        >
+                    <div className={StylesObject.general.outerWrapper}>
+                        {/* Display article summary */}
+                        <p className={style.paragraphWrapper(darkLightMode)}>
                             {article.summary}
                         </p>
                     </div>
-                    <div className="flex justify-center">
-                        <div className="flex justify-center xl:justify-start">
+                    <div className={StylesObject.general.outerWrapper}>
+                        <div className={style.button.wrapper}>
+                            {/* Button to trigger the article click handler and view the full article */}
                             <button
-                                className="flex items-center bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-400 text-black text-xl shadow-gray-800 hover:shadow-black shadow-lg font-bold px-4 py-2 rounded mt-4 hover:from-yellow-500 hover:via-yellow-600 hover:to-yellow-500"
+                                className={StylesObject.general.button}
                                 onClick={handleArticleClick}
                             >
                                 Read the Full Article
-                                <img src="/assets/click-mouse.png" className="ml-1 h-6 w-6" />
+                                <img src={style.button.path} className={style.button.style} />
                             </button>
                         </div>
                     </div>

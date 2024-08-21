@@ -1,17 +1,29 @@
+/**
+ * index.css
+ * 
+ * This file defines global styles for the Crypto News application.
+ * It incorporates Tailwind CSS base, components, and utility classes, and applies custom global styles such as text alignment and layout.
+ */
+
+/* Import Tailwind's base, components, and utilities for global styling */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Custom utility class to justify text alignment */
 .text-justify {
-    text-align: justify;
+    text-align: justify; /* Ensures text is evenly aligned on both the left and right sides */
 }
 
+/* Ensure that html and body elements take up the full height of the viewport */
 html, body {
     height: 100%;
-    margin: 0;
-  }
-  #root {
+    margin: 0; /* Remove default margins */
+}
+
+/* Style the root element to ensure the app takes up at least the full height of the viewport */
+#root {
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+    flex-direction: column; /* Arrange the content vertically */
+    min-height: 100vh; /* Ensure the content stretches to the full viewport height */
+}

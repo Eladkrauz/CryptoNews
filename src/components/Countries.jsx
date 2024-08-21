@@ -1,7 +1,11 @@
 /**
+ * Countries.jsx
+ * 
  * This file exports an array of country names.
  * The array contains the names of all countries to be used in a dropdown menu in the ContactForm component.
+ * It serves as a data source for selecting the user's country when filling out the form.
  */
+
 const countries = [
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria",
     "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
