@@ -292,7 +292,7 @@ const StylesObject = {
             : `${this.textSection} text-white`;
         },
 
-        h1base: "font-bold text-center w-5/6 text-2xl lg:text-4xl mt-2 mb-4 border-2 p-2 xl:p-3 2xl:p-4 hover:shadow-gray-700",
+        h1base: "font-bold text-center break-words hyphens-auto w-5/6 text-2xl lg:text-4xl mt-2 mb-4 border-2 p-2 xl:p-3 2xl:p-4 hover:shadow-gray-700",
         h1Wrapper(darkLightMode) {
             return darkLightMode === 'light'
             ? `${this.h1base} text-black shadow-black shadow-xl border-black`
@@ -348,7 +348,7 @@ const StylesObject = {
             : `${this.textBase} text-white`;
         },
 
-        titleWrapper: "flex justify-center mt-4",
+        titleWrapper: "flex justify-center mt-4 break-words hyphens-auto",
         h1: {
             h1base: "text-center w-10/12 xl:w-full text-4xl lg:text-5xl xl:text-6xl mt-2 font-bold",
             h1wrapper(darkLightMode) {
@@ -373,7 +373,13 @@ const StylesObject = {
                 return darkLightMode === 'light'
                 ? `${this.paragraphBase} text-black`
                 : `${this.paragraphBase} text-white`;
-            }
+            },
+
+            keepReading(darkLightMode) {
+                return darkLightMode === 'light'
+                ? `${this.paragraphBase} font-bold text-gray-800`
+                : `${this.paragraphBase} font-bold text-gray-200`
+            },
         },
 
         button: {
